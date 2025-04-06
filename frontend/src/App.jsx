@@ -18,7 +18,7 @@ function App() {
 
   const fetchNotes = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/notes');
+      const response = await fetch('https://smart-notes-webapp.onrender.com/api/notes');
       const data = await response.json();
       setNotes(data);
     } catch (error) {
@@ -38,13 +38,13 @@ function App() {
 
       let response;
       if (activeNote) {
-        response = await fetch(`http://localhost:5000/api/notes/${activeNote.id}`, {
+        response = await fetch(`https://smart-notes-webapp.onrender.com/api/notes/${activeNote.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(noteData)
         });
       } else {
-        response = await fetch('http://localhost:5000/api/notes', {
+        response = await fetch('https://smart-notes-webapp.onrender.com/api/notes', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(noteData)
@@ -53,7 +53,7 @@ function App() {
 
       const savedNote = await response.json();
       
-      await fetch('http://localhost:5000/api/learn', {
+      await fetch('https://smart-notes-webapp.onrender.com/api/learn', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: title + ' ' + content })
@@ -72,7 +72,7 @@ function App() {
 
   const deleteNote = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/notes/${id}`, {
+      await fetch(`https://smart-notes-webapp.onrender.com/api/notes/${id}`, {
         method: 'DELETE'
       });
       fetchNotes();
@@ -104,7 +104,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/autocomplete?prefix=${word}`);
+      const response = await fetch(`https://smart-notes-webapp.onrender.com/api/autocomplete?prefix=${word}`);
       const data = await response.json();
       setSuggestions(data);
       setShowSuggestions(data.length > 0);
